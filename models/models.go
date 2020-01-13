@@ -7,28 +7,40 @@ import (
 
 type Stock struct {
     gorm.Model
-    Name string `gorm:"required"`
-    Code string `gorm:"required"`
+
+    Name string
+    Code string
 }
 
 type Asset struct {
     gorm.Model
-    Amount      int         `gorm:"required"`
-    Stock       Stock       `gorm:"required"`
-    Time        time.Time   `gorm:"required"`
-    TimeZone    string      `gorm:"required"`
+
+    Amount      uint
+    Value       uint
+    Time        time.Time
+    TimeZone    string
+
+    StockID     uint
+    Stock       Stock
+
+    WalletID    uint
+    Wallet      Wallet
 }
 
 type Wallet struct {
     gorm.Model
+
     Description string
     Assets      []Asset
 }
 
 type Quotation struct {
     gorm.Model
+
+    Value       int
+    Time        time.Time
+    TimeZone    string
+
+    StockID     uint
     Stock       Stock
-    Value       int         `gorm:"required"`
-    Time        time.Time   `gorm:"required"`
-    TimeZone    string      `gorm:"required"`
 }
