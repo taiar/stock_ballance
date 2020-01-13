@@ -5,10 +5,17 @@ import (
 )
 
 var (
-    Mode *string
+    Command *string
 )
+const Migrate = "migrate"
+const Server = "server"
+const Populate = "populate"
 
 func Init() {
-    Mode = flag.String("mode", "server", "mode selection [server|cli]")
+    Command = flag.String("mode", "server", "mode selection")
     flag.Parse()
+}
+
+func Mode() string {
+    return *Command
 }
