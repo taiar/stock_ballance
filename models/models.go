@@ -21,7 +21,8 @@ type Asset struct {
 
 type Wallet struct {
     gorm.Model
-    Assets []Asset
+    Description string
+    Assets      []Asset
 }
 
 type Quotation struct {

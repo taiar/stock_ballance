@@ -15,7 +15,8 @@ func main() {
     cmd.Init()
     switch cmd.Mode() {
     case cmd.Populate:
-        fmt.Println("Create a new register")
+        fmt.Println("Create a new", *cmd.Entity)
+        cmd.PopulateHandler()
     case cmd.Server:
         // run web application
         fmt.Println("Run web server")
