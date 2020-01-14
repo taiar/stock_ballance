@@ -6,11 +6,17 @@ import (
     "github.com/taiar/stock_ballance/cmd"
     "github.com/taiar/stock_ballance/database"
     "github.com/taiar/stock_ballance/migrations"
+    "github.com/taiar/stock_ballance/models"
 )
 
 func main() {
     _ = godotenv.Load()
     database.Init()
+
+    var wallet models.Wallet
+    database.DBCon.Preload("Assets").First(&wallet, 1)
+
+    fmt.Println(wallet.FormattedTotal())
 
     cmd.Init()
     switch cmd.Mode() {
