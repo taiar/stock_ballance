@@ -2,9 +2,6 @@ package cmd
 
 import (
     "flag"
-    "fmt"
-    "github.com/taiar/stock_ballance/database"
-    "github.com/taiar/stock_ballance/models"
 )
 
 var (
@@ -24,7 +21,7 @@ const Server = "server"
 const Populate = "populate"
 
 func Init() {
-    Command = flag.String("mode", "server", "mode selection [migrate|populate|server]")
+    Command = flag.String("mode", "", "mode selection [migrate|populate|server|import]")
     Entity = flag.String("entity", "", "set entity name for creation")
     Code = flag.String("code", "", "set stock code")
     Name = flag.String("name", "", "set stock name")
@@ -36,30 +33,6 @@ func Init() {
     flag.Parse()
 }
 
-func PopulateHandler() {
-    switch *Entity {
-    case "stock":
-        stock := models.Stock{Code: *Code, Name: *Name}
-        createAndPrintEntity(&stock)
-        fmt.Println(stock.ID)
-    case "wallet":
-        wallet := models.Wallet{Description: *Description}
-        createAndPrintEntity(&wallet)
-        fmt.Println(wallet.ID)
-    case "asset":
-        asset := models.Asset{ Amount: *Amount, Value:  *Value, StockID: *StockId, WalletID: *WalletID }
-        createAndPrintEntity(&asset)
-        fmt.Println(asset.ID)
-    default:
-        fmt.Println("Unknown entity", *Entity)
-    }
-}
-
 func Mode() string {
     return *Command
-}
-
-func createAndPrintEntity(entity interface{}) {
-    database.DBCon.Create(entity)
-    fmt.Printf("%+v\n", entity)
 }
