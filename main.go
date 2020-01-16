@@ -1,6 +1,7 @@
 package main
 
 import (
+    "flag"
     "fmt"
     "github.com/joho/godotenv"
     "github.com/taiar/stock_ballance/cmd"
@@ -29,7 +30,8 @@ func main() {
     case cmd.Migrate:
         migrations.Migrate()
     default:
-        fmt.Println(cmd.Mode())
+        fmt.Println("Please see the usage help below:")
+        flag.PrintDefaults()
     }
 
     //client := av.NewClientConnection(os.Getenv("ALPHA_VANTAGE_API_KEY"), av.NewConnection())
