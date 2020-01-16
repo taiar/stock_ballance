@@ -36,3 +36,21 @@ func Init() {
 func Mode() string {
     return *Command
 }
+
+func Run() {
+    switch Mode() {
+    case Populate:
+        fmt.Println("Create a new", *Entity)
+        PopulateHandler()
+    case Server:
+        fmt.Println("Run web server")
+    case Migrate:
+        migrations.Migrate()
+    case Import:
+        fmt.Println("Importing file", *FileInput)
+        ImportHandler()
+    default:
+        fmt.Println("Please see the usage help below:")
+        flag.PrintDefaults()
+    }
+}
