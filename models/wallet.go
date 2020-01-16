@@ -3,30 +3,7 @@ package models
 import (
     "github.com/Rhymond/go-money"
     "github.com/jinzhu/gorm"
-    "time"
 )
-
-type Stock struct {
-    gorm.Model
-
-    Name string
-    Code string
-}
-
-type Asset struct {
-    gorm.Model
-
-    Amount      uint
-    Value       uint
-    Time        time.Time
-    TimeZone    string
-
-    StockID     uint
-    Stock       Stock
-
-    WalletID    uint
-    Wallet      Wallet
-}
 
 type Wallet struct {
     gorm.Model
@@ -45,15 +22,4 @@ func (wallet Wallet) Total() int64 {
 
 func (wallet Wallet) FormattedTotal() string {
     return money.New(wallet.Total(), "BRL").Display()
-}
-
-type Quotation struct {
-    gorm.Model
-
-    Value       int
-    Time        time.Time
-    TimeZone    string
-
-    StockID     uint
-    Stock       Stock
 }
