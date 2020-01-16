@@ -4,12 +4,13 @@ import (
     "fmt"
     "github.com/taiar/stock_ballance/database"
     "github.com/taiar/stock_ballance/models"
+    "strings"
 )
 
 func PopulateHandler() {
     switch *Entity {
     case "stock":
-        stock := models.Stock{Code: *Code, Name: *Name}
+        stock := models.Stock{Code: strings.ToUpper(*Code), Name: *Name}
         createAndPrintEntity(&stock)
         fmt.Println(stock.ID)
     case "wallet":
