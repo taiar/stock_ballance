@@ -63,11 +63,33 @@ func ImportHandler() {
 }
 
 func ImportLines(lines [][]rune) {
-    for i, rawLine := range lines {
-        parsedLine := parseLine(rawLine)
+    for _, rawLine := range lines {
+        parseLine(rawLine)
     }
 }
 
 func parseLine(rawLine []rune) *LineRecord {
+    fmt.Println("Teste")
+    record := LineRecord{
+        LineMarketDate:    time.Time{},
+        LineBdiCode:       0,
+        LineStockCode:     "",
+        LineMarketType:    0,
+        LineCompanyName:   "",
+        LineStockSpec:     "",
+        LineTermDays:      0,
+        LineCurrency:      "",
+        LineOpeningPrice:  0,
+        LineMaxPrice:      0,
+        LineMinPrice:      0,
+        LineMedPrice:      0,
+        LineLastPrice:     0,
+        LineBestBuyPrice:  0,
+        LineBestSellPrice: 0,
+        LineNegTotal:      0,
+        LineTitTotal:      0,
+        LineVolumeTotal:   0,
+    }
 
+    return &record
 }

@@ -48,12 +48,8 @@ func Init() {
     flag.Parse()
 }
 
-func Mode() string {
-    return *Command
-}
-
 func Run() {
-    switch Mode() {
+    switch *Command {
     case Populate:
         fmt.Println("Create a new", *Entity)
         PopulateHandler()
