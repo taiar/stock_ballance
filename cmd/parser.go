@@ -22,7 +22,7 @@ var (
     // Populate Asset params
     Amount *uint
     StockId *uint
-    WalletID *uint
+    WalletId *uint
     Value *uint
 
     // Import params
@@ -41,7 +41,7 @@ func Init() {
     Description = flag.String("description", "", "set wallet description")
     Amount      = flag.Uint("amount", 0, "set asset amount")
     StockId     = flag.Uint("stock_id", 0, "set asset stock id")
-    WalletID    = flag.Uint("wallet_id", 0, "set asset wallet id")
+    WalletId    = flag.Uint("wallet_id", 0, "set asset wallet id")
     Value       = flag.Uint("value", 0, "set asset current value")
     FileInput   = flag.String("file_input", "", "file path to be imported")
 

@@ -18,7 +18,13 @@ func PopulateHandler() {
         createAndPrintEntity(&wallet)
         fmt.Println(wallet.ID)
     case "asset":
-        asset := models.Asset{ Amount: *Amount, Value:  *Value, StockID: *StockId, WalletID: *WalletID }
+        var wallet models.Wallet
+        var stock models.Stock
+
+        database.DBCon.Find(&wallet, *WalletId)
+        database.DBCon.Find(&stock, *StockId)
+
+        asset := models.Asset{ Amount: *Amount, Value:  *Value, Stock: stock, Wallet: wallet }
         createAndPrintEntity(&asset)
         fmt.Println(asset.ID)
     default:

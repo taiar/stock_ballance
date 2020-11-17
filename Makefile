@@ -1,7 +1,7 @@
 get:
 	go get -d -v ./...
 
-build: get
+build:
 	go build main.go
 
 populate_wallet:
@@ -12,3 +12,6 @@ populate_asset:
 
 populate_stock:
 	./main -mode populate -entity stock
+
+clean:
+	rm main
